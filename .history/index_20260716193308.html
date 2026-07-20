@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A notes application built with HTML, CSS, and JavaScript."
+    />
+    <meta name="keywords" content="notes, HTML, CSS, JavaScript" />
+    <link rel="icon" href="/img/Logo.png" type="image/png" />
+    <title>Note App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              aclonica: ["Aclonica", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+  <body>
+    <aside
+      class="w-[280px] shrink-0 bg-white border-r border-gray-200 flex flex-col"
+    >
+      <div class="px-5 pt-5 pb-3">
+        <h1 class="text-lg font-bold">
+          <span class="text-[#EC7160] font-aclonica">Almdrasa-Notes</span>
+        </h1>
+      </div>
+
+      <div class="px-4 pb-3">
+        <div class="relative">
+          <svg
+            class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m21 21-4.3-4.3" stroke-linecap="round" />
+          </svg>
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search"
+            class="w-full bg-gray-50 border border-gray-200 rounded-md py-2 pl-9 pr-3 text-sm outline-none focus:border-[#EB5757]"
+          />
+        </div>
+      </div>
+
+      <div class="px-4 pb-2 flex flex-col gap-1 text-sm">
+        <a
+          href="#"
+          onclick="
+            showHome();
+            return false;
+          "
+          class="text-gray-700 py-1"
+          >Notes</a
+        >
+        <a
+          href="#"
+          onclick="
+            openAddPanel();
+            return false;
+          "
+          class="text-gray-500 py-1"
+          >Add Note</a
+        >
+      </div>
+    </aside>
+    <div class="flex-1 overflow-y-auto px-3 pb-4 mt-2">
+      <div id="pinnedSection">
+        <p
+          class="px-2 pt-2 pb-1 text-[11px] font-bold text-[#EB5757] tracking-wide"
+        >
+          PINNED
+        </p>
+        <div id="pinnedList"></div>
+      </div>
+      <div>
+        <p
+          class="px-2 pt-3 pb-1 text-[11px] font-bold text-gray-400 tracking-wide"
+        >
+          Notes
+        </p>
+        <div id="notesList"></div>
+      </div>
+      <p id="emptyState" class="hidden text-center text-sm text-gray-400 py-10">
+        No matching notes
+      </p>
+    </div>
+  </body>
+</html>

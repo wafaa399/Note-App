@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A notes application built with HTML, CSS, and JavaScript."
+    />
+    <meta name="keywords" content="notes, HTML, CSS, JavaScript" />
+    <link rel="icon" href="/img/Logo.png" type="image/png" />
+    <title>Note App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              aclonica: ["Aclonica", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+
+  <body class="bg-gray-100 h-screen overflow-hidden text-sm text-gray-800">
+    <div class="flex h-screen w-screen relative">
+      <!--------SIDEBAR -------->
+      <aside
+        id="sidebar"
+        class="bg-[#F6F6F6] border-r border-gray-200 flex-shrink-0 overflow-hidden pl-6 pt-10"
+        style="width: 16.125rem"
+      >
+        <div class="w-[8.375rem] h-[1.0625rem] mb-[5rem]">
+          <h1 class="font-aclonica text-[0.9375rem] text-[#EC7160] font-normal">
+            Almdrasa-Notes
+          </h1>
+        </div>
+
+        <div class="relative mb-5 w-[13.125rem] h-[2.6875rem]">
+          <input
+            type="text"
+            placeholder="Search"
+            class="w-full h-full text-[1rem] border border-[#E7E7E9] rounded-lg pl-8 py-2 outline-none focus:ring-1 focus:ring-red-400"
+          />
+          <svg
+            class="w-5 h-5 text-gray-400 absolute left-2 top-1/2 -translate-y-1/2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
+            />
+          </svg>
+        </div>
+        <div class="space-y-2">
+          <button
+            data-view="notes"
+            class="nav-item relative w-full h-[3.3rem] pl-3 rounded text-[1rem] font-medium text-[#303030] flex items-center"
+          >
+            <span
+              class="absolute left-0 top-1/2 -translate-y-1/2 w-[.2rem] h-[1.5rem] bg-[#EC7160]"
+            ></span>
+            Notes
+          </button>
+
+          <button
+            data-view="add"
+            class="nav-item w-full h-3 text-left pl-5 rounded text-[#898989] flex items-center hover:bg-gray-50"
+          >
+            Add Notes
+          </button>
+        </div>
+      </aside>
+
+      <!--============NOTES LIST============ -->
+      <section
+        class="relative w-80 flex-shrink-0 border border-[#E7E7E9] bg-white text-[#EC7160] h-full"
+      >
+        <div class="h-full overflow-y-auto overflow-x-hidden px-4 pt-12">
+          <div class="mb-1">
+            <p class="text-[1rem] font-normal mb-2">PINNED</p>
+            <div id="pinnedList" class="space-y-1"></div>
+          </div>
+          <div class="mt-24">
+            <div
+              class="-mx-4 h-[36px] border-y border-[#E7E7E9] flex items-center"
+            >
+              <p class="px-4 text-[1rem] font-normal">Notes</p>
+            </div>
+            <div id="notesList" class="space-y-1"></div>
+          </div>
+        </div>
+        <button
+          id="toggleBtn"
+          class="absolute top-32 right-0 translate-x-1/2 z-20 w-8 h-8 bg-white border border-[#E7E7E9] rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50 transition-all"
+        >
+          <svg
+            id="toggleIcon"
+            class="w-3.5 h-3.5 text-gray-500 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+      </section>
+      <!-- ============ NOTE DETAIL ============ -->
+      <main class="flex-1 overflow-y-auto bg-white">
+        <div id="detailView" class="max-w-2xl mx-auto p-8"></div>
+      </main>
+    </div>
+  </body>
+</html>

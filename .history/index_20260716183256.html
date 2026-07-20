@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A modern Notes App to create, edit, search, and manage your notes efficiently."
+    />
+    <meta name="keywords" content="Notes App, Notes, Todo, Tasks Pinned" />
+    <meta name="author" content="Wafaa Ahmed" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <title>Notes App</title>
+    <link rel="icon" type="image/png" href="./img/Logo.png" />
+  </head>
+ 
+<style>
+  *{font-family: Arial, Helvetica, sans-serif;}
+  body{background:#F4F4F4; color:#222;}
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-thumb{background:#ddd; border-radius:8px;}
+  .note-card{transition: background .15s ease;}
+  .note-card:hover{background:#F7F7F7;}
+  .note-card.active{background:#FDF1F0;}
+  .fade-in{animation: fadeIn .2s ease;}
+  @keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+</style>
+</head>
+<body class="min-h-screen">
+
+<div class="flex h-screen overflow-hidden"> 
+  <!-- Sidebar -->
+  <aside class="w-[280px] shrink-0 bg-white border-r border-gray-200 flex flex-col">
+    <div class="px-5 pt-5 pb-3">
+      <h1 class="text-lg font-bold"><span class="text-[#EB5757]">Almdrasa-Notes</span></h1>
+    </div>
+    <div class="px-4 pb-3">
+        <input id="searchInput" type="text" placeholder="Search"
+          class="w-full bg-gray-50 border border-gray-200 rounded-md py-2 pl-9 pr-3 text-sm outline-none focus:border-[#EB5757]">
+      </div>
+    </div>
+ 
+    <div class="px-4 pb-2 flex flex-col gap-1 text-sm">
+      <a href="#" onclick="showHome();return false;" class="text-gray-700 py-1">Notes</a>
+      <a href="#" onclick="openAddPanel();return false;" class="text-gray-500 py-1">Add Note</a>
+    </div>
+ 
+    <div class="flex-1 overflow-y-auto px-3 pb-4 mt-2">
+      <div id="pinnedSection">
+        <p class="px-2 pt-2 pb-1 text-[11px] font-bold text-[#EB5757] tracking-wide">PINNED</p>
+        <div id="pinnedList"></div>
+      </div>
+      <div>
+        <p class="px-2 pt-3 pb-1 text-[11px] font-bold text-gray-400 tracking-wide">Notes</p>
+        <div id="notesList"></div>
+      </div>
+      <p id="emptyState" class="hidden text-center text-sm text-gray-400 py-10">No matching notes</p>
+    </div>
+  </aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+            <label for="searchInput" class="search-label">
+              <ion-icon name="search-outline"></ion-icon>
+            </label>
+            <input id="searchInput" type="search" placeholder="Search" />
+          </div>
+        </div>
+        <div class="px-4 pb-2 flex flex-col gap-1 text-sm">
+          <a
+            href="#"
+            onclick="
+              showHome();
+              return false;
+            "
+            class="text-gray-700 py-1"
+            >Notes</a
+          >
+          <a
+            href="#"
+            onclick="
+              openAddPanel();
+              return false;
+            "
+            class="text-gray-500 py-1"
+            >Add Note</a
+          >
+        </div>
+        <div class="flex-1 overflow-y-auto px-3 pb-4 mt-2">
+          <div id="pinnedSection">
+            <p
+              class="px-2 pt-2 pb-1 text-[11px] font-bold text-[#EB5757] tracking-wide"
+            >
+              PINNED
+            </p>
+            <div id="pinnedList"></div>
+          </div>
+          <div>
+            <p
+              class="px-2 pt-3 pb-1 text-[11px] font-bold text-gray-400 tracking-wide"
+            >
+              Notes
+            </p>
+            <div id="notesList"></div>
+          </div>
+          <p
+            id="emptyState"
+            class="hidden text-center text-sm text-gray-400 py-10"
+          >
+            No matching notes
+          </p>
+        </div>
+      </aside>
+      <main class="flex-1 relative overflow-y-auto bg-[#FAFAFA]">
+        <div
+          class="border-b border-gray-200 bg-white px-8 py-3 flex items-center gap-2"
+        >
+          <svg
+            class="w-4 h-4 text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <rect x="3" y="4" width="18" height="16" rx="2" />
+          </svg>
+          <span id="pageLabel" class="text-sm text-gray-500">Home</span>
+        </div>
+
+        <div id="noteView" class="max-w-2xl mx-auto px-10 py-10 fade-in"></div>
+
+        <!-- Add note panel -->
+        <div id="addPanel" class="hidden max-w-md mx-auto px-10 py-10 fade-in">
+          <h2 class="text-xl font-bold mb-6">Add Note</h2>
+
+          <label class="block text-xs text-gray-500 mb-1">Title*</label>
+          <input
+            id="inputTitle"
+            type="text"
+            class="w-full bg-gray-100 border border-gray-200 rounded-md px-3 py-2.5 mb-4 text-sm outline-none focus:border-[#EB5757] focus:bg-white"
+          />
+
+          <label class="block text-xs text-gray-500 mb-1">Author*</label>
+          <input
+            id="inputAuthor"
+            type="text"
+            class="w-full bg-gray-100 border border-gray-200 rounded-md px-3 py-2.5 mb-4 text-sm outline-none focus:border-[#EB5757] focus:bg-white"
+          />
+
+          <label class="block text-xs text-gray-500 mb-1">Your Note*</label>
+          <textarea
+            id="inputBody"
+            rows="6"
+            class="w-full bg-gray-100 border border-gray-200 rounded-md px-3 py-2.5 mb-2 text-sm outline-none focus:border-[#EB5757] focus:bg-white resize-none"
+          ></textarea>
+          <p id="formError" class="hidden text-xs text-[#EB5757] mb-3">
+            Please fill in all required fields.
+          </p>
+
+          <div class="flex gap-3 mt-3">
+            <button
+              onclick="saveNote(false)"
+              class="bg-[#EB5757] hover:bg-[#d94848] text-white text-sm font-semibold px-4 py-2 rounded-md"
+            >
+              Add Note
+            </button>
+            <button
+              onclick="saveNote(true)"
+              class="bg-[#FDEBEB] hover:bg-[#fbdcdc] text-[#EB5757] text-sm font-semibold px-4 py-2 rounded-md"
+            >
+              Add pinned note
+            </button>
+          </div>
+        </div>
+
+        <!-- Floating add button -->
+        <button
+          id="fabAdd"
+          onclick="openAddPanel()"
+          class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-[#EB5757] hover:bg-[#d94848] text-white text-2xl leading-none flex items-center justify-center shadow-lg"
+        >
+          +
+        </button>
+      </main>
+    </div>
+  </body>
+</html>

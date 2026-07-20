@@ -1,0 +1,18 @@
+export function formatDate(isoString) {
+  const date = new Date(isoString);
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+// //if the description of note very long add like etc...
+export function truncate(text, maxLength = 90) {
+  if (text.length <= maxLength) return text;
+  return text.slice(0, maxLength).trim();
+}
+
+//for clearing search
+export function clear(container) {
+  container.innerHTML = "";
+}
