@@ -12,8 +12,8 @@ function showListScreen() {
   //to hide add bitton for phone
   const fab = document.getElementById("addNoteFab");
   if (notesSection) notesSection.classList.remove("hidden");
-  if (detailSection) detailSection.classList.add("hidden");
-  if (fab) fab.classList.remove("hidden");
+  // if (detailSection) detailSection.classList.add("hidden");
+  // if (fab) fab.classList.remove("hidden");
 }
 
 function showDetailScreen() {
@@ -30,7 +30,7 @@ function showDetailScreen() {
   } else {
     if (detailSection) detailSection.classList.remove("hidden");
   }
-  if (fab) fab.classList.add("hidden");
+  // if (fab) fab.classList.add("hidden");
 }
 function refreshList() {
   const source = currentQuery
