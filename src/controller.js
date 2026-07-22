@@ -1,6 +1,6 @@
 import * as Model from "./model.js";
-import { renderNotesList } from "./Views/notesView.js";
-import { renderNoteDetail, renderAddNoteForm } from "./Views/detailsView.js";
+import { renderNotesList } from "./views/notesView.js";
+import { renderNoteDetail, renderAddNoteForm } from "./views/detailsView.js";
 
 let currentQuery = "";
 const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
