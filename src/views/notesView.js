@@ -1,4 +1,4 @@
-import { formatDate, truncate, clear } from "../helper.js";
+import { formatDate, truncate, clear } from "./helper.js";
 
 function noteItemHTML(note) {
   return `
