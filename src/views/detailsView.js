@@ -1,4 +1,4 @@
-import { formatDate } from "./helper.js";
+import { formatDate } from "../helper.js";
 
 export function renderNoteDetail(note) {
   const container = document.getElementById("detailView");
